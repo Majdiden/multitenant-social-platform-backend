@@ -14,7 +14,7 @@ let adminDbConnection;
 
 export const connectAllDb = async () => {
   const ADMIN_DB_URI =
-    "mongodb+srv://admin:admin@devdb01.cdzut.mongodb.net/Matjar?retryWrites=true&w=majority";
+    process.env.ADMIN_DB_URI;
   adminDbConnection = await initAdminDbConnection(ADMIN_DB_URI);
   const allTenants = await getTenantsRepo(adminDbConnection);
   for (const tenant of allTenants) {

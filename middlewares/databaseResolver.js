@@ -15,8 +15,6 @@ export const databaseResolver = async (req, res, next) => {
       console.log("in login");
       dbConnection = await getConnectionForTenant(req.body.name);
     } else if (urlArr.includes("products")) {
-      // Extract tenant name from URL path
-      // URL format should be: /api/{tenantName}/products/...
       const tenantName = urlArr[2];
       if (!tenantName) {
         return res.status(400).json({ message: "Tenant name not provided in URL" });
