@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import tenantSchema from "../schemas/tenant.js";
 import tenantUserSchema from "../schemas/tenantUser.js";
-import userSchema from "../schemas/store/user.js";
-import productSchema from "../schemas/store/product.js";
+import userSchema from "../schemas/server/user.js";
+import channelSchema from "../schemas/server/channel.js";
+import messageSchema from "../schemas/server/message.js";
 
 const clientOptions = {
   socketTimeoutMS: 30000,
@@ -39,7 +40,8 @@ const initTenantDbConnection = async (DB_URL, dbName) => {
     });
 
     await db.model("User", userSchema);
-    await db.model("Product", productSchema);
+    await db.model("Channel", channelSchema);
+    await db.model("Message", messageSchema);
     return db;
   } catch (error) {
     console.error(error);

@@ -16,7 +16,9 @@ export const connectAllDb = async () => {
   const ADMIN_DB_URI =
     process.env.ADMIN_DB_URI;
   adminDbConnection = await initAdminDbConnection(ADMIN_DB_URI);
+  console.log("DB:", adminDbConnection)
   const allTenants = await getTenantsRepo(adminDbConnection);
+  console.log("tenants:", allTenants)
   for (const tenant of allTenants) {
     const tenantConnection = initTenantDbConnection(tenant.dbUri, tenant.name);
     setCacheConnection(tenant.name, tenantConnection);
