@@ -33,7 +33,7 @@ const addATenantRepo = async (
   session = null
 ) => {
   const sessionOption = {};
-  tenantData.dbUri = `mongodb+srv://admin:admin@devdb01.cdzut.mongodb.net/${tenantData.name}?retryWrites=true&w=majority`;
+  tenantData.dbUri = `${process.env.TENANT_DB_URI}/${tenantData.name}`;
   if (session) sessionOption.session = session;
   const data = await adminDbConnection
     .model(mainSchemaName)
